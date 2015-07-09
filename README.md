@@ -44,3 +44,5 @@ curl -X 'DELETE http://localhost:8080/codigo'
 ## Notas
 
 * Deje el dump de la db si lo desean usar (dumpDB.sql)
+* [Silex Home](http://silex.sensiolabs.org/)
+* [Idiorm Docs](http://idiorm.readthedocs.org/en/latest/index.html)
