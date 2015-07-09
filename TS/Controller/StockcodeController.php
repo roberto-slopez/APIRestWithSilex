@@ -97,7 +97,7 @@ class StockcodeController implements ControllerProviderInterface
         ;
 
         if (!$toy) {
-            $app->abort(404, "Stockcode {$stockcode} does not exist.");
+            return new Response("Stockcode {$stockcode} does not exist.", 404);
         }
 
         return new JsonResponse($toy);
@@ -115,11 +115,8 @@ class StockcodeController implements ControllerProviderInterface
     public function deleteStockcode(Application $app, $stockcode)
     {
         try {
-            $toy = $app['idiorm.db']
-                ->for_table('Toys')
-                ->where('code', $stockcode)
-                ->delete()
-            ;
+            $toy = $app['idiorm.db']->for_table('Toys')->where('code', $stockcode)->find_one();
+            $toy->delete();
 
             $responseCode = Response::HTTP_NO_CONTENT;
             return new Response('Success', $responseCode);
